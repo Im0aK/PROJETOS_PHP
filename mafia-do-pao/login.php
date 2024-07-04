@@ -15,17 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //RETORNO DO BANCO 
     $retorno = mysqli_query($link, $sql);
 
-    while ($tbl = mysqli_fetch_array($retorno)) {
+    /*while ($tbl = mysqli_fetch_array($retorno)) {
         $contagem = $tbl[0];
 
-    }
+    }*/
+
+    $contagem = mysqli_fetch_array($retorno)[0];
 
 
     //VERIFICA SE O NATHAN EXISTE 
     if ($contagem == 1) {
         echo "<script>window.location.href='home.php';</script>";
-    } 
-    else {
+    } else {
         echo "<script>window.alert('USUARIO SOU SENHA INCORRETO');</script>";
     }
 }
