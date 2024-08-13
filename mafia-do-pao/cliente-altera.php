@@ -1,5 +1,6 @@
 <?php
 include('conectadb.php');
+include('topo.php');
  
 //COLETA O VALOR ID DA URL
 $id = $_GET['id'];
@@ -8,6 +9,7 @@ $retorno = mysqli_query($link, $sql);
  
 while($tbl = mysqli_fetch_array($retorno)){
     $email = $tbl[3];
+    $nome = $tbl[2];
     $telefone = $tbl[4];
     $status = $tbl[5];
 }
@@ -16,10 +18,11 @@ while($tbl = mysqli_fetch_array($retorno)){
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $id = $_POST['id'];
     $email = $_POST['txtemail'];
+    $nome = $_POST['txtnome'];
     $telefone = $_POST['telefone'];
     $status = $_POST['status'];
 
-    $sql = "UPDATE tb_clientes SET cli_email= '$email', cli_cel = '$telefone', cli_status = '$status' WHERE cli_id = $id";
+    $sql = "UPDATE tb_clientes SET cli_email= '$email', cli_nome = '$nome', cli_cel = '$telefone', cli_status = '$status' WHERE cli_id = $id";
  
     mysqli_query($link, $sql);
 
@@ -43,20 +46,24 @@ exit();
 <body>
 <div class="container-global">
    
-        <a href="cliente-lista.php"><img src="icons/Navigation-left-01-256.png" width="35" height="35"></a>
         <form class="formulario" action="cliente-altera.php" method="post">
             <input type="hidden" name="id" value="<?= $id ?>">
+
            
             <label>EMAIL</label>
             <input type="email" name="txtemail" placeholder="DIGITE SEU EMAIL" value="<?= $email ?>" required>
+            <br>
+            <label>NOME</label>
+            <input type="text" name="txtnome" placeholder="DIGITE SEU NOME" value="<?= $nome ?>" required>
             <br>
             <label>TELEFONE</label>
             <input type="text" id ="telefone" name="telefone" placeholder="(00) 00000-0000" maxlength ="15" value="<?= $telefone ?>" required>
             <br>
             <!-- SELETOR DE ATIVO E INATIVO -->
+            <div class="bullets">
             <input type="radio" name="status" value="1" <?= $status =='1'?"checked": ""?>>ATIVO
-            <br>
             <input type="radio" name="status" value="0" <?= $status =='0'?"checked": ""?>>INATIVO
+            </div>
             <br>
             <br>
             <input type="submit" value="ALTERAR">

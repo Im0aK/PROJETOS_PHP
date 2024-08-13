@@ -1,8 +1,7 @@
 <?php
+include('conectadb.php');
+include('topo.php');
 
-session_start();
-
-include("conectadb.php");
 
 if($_SERVER['REQUEST_METHOD']== 'POST') {
     $cpf = $_POST['txtcpf'];
@@ -53,7 +52,6 @@ if($_SERVER['REQUEST_METHOD']== 'POST') {
 
          <body>
             <div class="container-global">
-         <a href="backoffice.php"><img src="icons/Navigation-left-01-256.png"  width="30" height="30"></a>
          <form class="formulario" action="cliente-cadastro.php" method="post">
             <label>CPF</label>
             <input type="text" id="cpf" name="txtcpf" placeholder="000.000.000-00" maxlength="14" oninput="formatarCPF(this)" required>
@@ -72,7 +70,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST') {
 
         </form>
         <script src="script.js"></script>
-    </div>
+            </div>
 
 
     </body>

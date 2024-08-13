@@ -1,5 +1,7 @@
 <?php
 include('conectadb.php');
+include('topo.php');
+
  
 //COLETA O VALOR ID DA URL
 $id = $_GET['id'];
@@ -44,7 +46,6 @@ exit();
 <body>
 <div class="container-global">
    
-        <a href="usuario-lista.php"><img src="icons/Navigation-left-01-256.png" width="35" height="35"></a>
         <form class="formulario" action="usuario-altera.php" method="post">
             <input type="hidden" name="id" value="<?= $id ?>">
             <label>LOGIN</label>
@@ -57,12 +58,14 @@ exit();
             <input type="email" name="txtemail" placeholder="DIGITE SEU EMAIL" value="<?= $email ?>" required>
             <br>
             <!-- SELETOR DE ATIVO E INATIVO -->
+            <div class="bullets">
             <input type="radio" name="status" value="1" <?= $status =='1'?"checked": ""?>>ATIVO
-            <br>
             <input type="radio" name="status" value="0" <?= $status =='0'?"checked": ""?>>INATIVO
+            </div>
             <br>
             <br>
             <input type="submit" value="ALTERAR">
+            
         </form>
     </div>
 </body>

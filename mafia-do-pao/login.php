@@ -4,7 +4,9 @@ session_start();
 
 
 
-include ("conectadb.php");
+include ('conectadb.php');
+
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['txtlogin'];
